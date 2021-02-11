@@ -19,9 +19,9 @@ class QuestionAdmin(admin.ModelAdmin):
     change_list_template = "custom_admin/csv_form.html"
     list_display = [
         'id', 'name', 'tags', 'recommended_time', 'description', 'score',
-        'options'
+        'options', 'answers', 'hr_id', 'status'
     ]
-    list_editable = ['description']
+    list_editable = ['description', 'hr_id', 'status']
     inlines = [OptionAdmin]
     actions = [send_to_hacker_rank]
 

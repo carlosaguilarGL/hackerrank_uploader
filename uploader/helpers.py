@@ -13,8 +13,13 @@ def create_questions(content):
     letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
     for row in csv.DictReader(content):
         answers = row['Answers']
+        hr_id = None
+        status = Question.Status.REGISTERED
         try:
-            question = Question.objects.get(name=row['Name']).delete()
+            question = Question.objects.get(name=row['Name'])
+            hr_id = question.hr_id
+            status = question.status
+            question.delete()
         except Question.DoesNotExist:
             pass
         finally:
@@ -23,7 +28,9 @@ def create_questions(content):
                 tags=row['Tags'],
                 recommended_time=row['Recommended_time'],
                 description=row['Description'],
-                score=row['Score']
+                score=row['Score'],
+                hr_id=hr_id,
+                status=status
             )
         question.option_set.set([
             Option.objects.create(

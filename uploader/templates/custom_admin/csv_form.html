@@ -1,6 +1,6 @@
 {% extends 'admin/change_list.html' %}
 {% block content %}
-<form action="upload-csv/" method="post" enctype="multipart/form-data" accept=".csv">
+<form action="upload-csv/" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ csv_upload_form }}
     <input type="submit" value="Upload">
