@@ -22,6 +22,8 @@ class QuestionAdmin(admin.ModelAdmin):
         'options', 'answers', 'hr_id', 'status'
     ]
     list_editable = ['description', 'hr_id', 'status']
+    search_fields = ['name', 'description', 'hr_id']
+    list_filter = ['status', 'tags']
     inlines = [OptionAdmin]
     actions = [send_to_hacker_rank]
 
