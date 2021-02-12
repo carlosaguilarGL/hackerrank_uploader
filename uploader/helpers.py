@@ -11,7 +11,10 @@ def create_questions(content):
     """
     questions = []
     letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
+    skip_status = ['done', 'skip']
     for row in csv.DictReader(content):
+        if row['Status'].lower() in skip_status:
+            continue
         answers = row['Answers']
         hr_id = None
         try:
